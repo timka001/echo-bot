@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import sys
-from aiogram import Bot, Dispatcher, html
+from aiogram import Bot, Dispatcher, html, F
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
@@ -17,6 +17,10 @@ dp = Dispatcher()
 async def command_start_handler(message: Message) -> None:
     await message.answer(f"Hello, {html.bold(message.from_user.full_name)}!")
 
+@dp.message(F.text.title()=="Salom")
+async def echo_handler(message: Message) -> None:
+    await message.answer("Salom")
+    
 
 @dp.message()
 async def echo_handler(message: Message) -> None:
